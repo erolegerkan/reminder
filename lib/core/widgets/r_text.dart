@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reminder/core/design/r_colors.dart';
 
 class RText extends StatelessWidget {
   const RText({
@@ -19,6 +20,7 @@ class RText extends StatelessWidget {
       style: GoogleFonts.literata(
         fontStyle: FontStyle.normal,
         fontWeight: fontWeight,
+        color: RColors.darkTitle
       ),
     );
   }

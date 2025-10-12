@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:reminder/core/design/r_colors.dart';
+import 'package:reminder/core/design/r_image_paths.dart';
+import 'package:reminder/core/widgets/r_image.dart';
 
 class RDrawer extends StatelessWidget {
   const RDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      
+    return Drawer(
+      backgroundColor: RColors.darkBackground,
+      child: const Column(
+        children: [
+          RImage(
+            imagePath: RImagePaths.reminderNewIcon,
+            imageHeight: 100,
+            imageWidth: 100,
+          ),
+        ],
+      ),
     );
   }
 }
