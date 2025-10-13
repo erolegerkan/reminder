@@ -18,6 +18,11 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(onPressed: (){}, icon: RIcon(icon: Icons.info_outline_rounded, iconColor: RColors.darkTitle))
       ],
+      shape: Border(
+        bottom: BorderSide(
+          color: RColors.darkTitle
+        )
+      ),
     );
   }
 
