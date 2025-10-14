@@ -10,6 +10,11 @@ class RDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: RColors.darkBackground,
+      shape: Border(
+        right: BorderSide(
+          color: RColors.darkTitle
+        )
+      ),
       child: const Column(
         children: [
           RImage(
