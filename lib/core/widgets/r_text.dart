@@ -7,10 +7,12 @@ class RText extends StatelessWidget {
     super.key,
     required this.textData,
     this.fontWeight = FontWeight.normal,
+    required this.fontSize,
   });
 
   final String textData;
   final FontWeight fontWeight;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class RText extends StatelessWidget {
       style: GoogleFonts.literata(
         fontStyle: FontStyle.normal,
         fontWeight: fontWeight,
-        color: RColors.darkTitle
+        fontSize: fontSize,
+        color: RColors.darkTitle,
       ),
     );
   }
