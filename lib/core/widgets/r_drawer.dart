@@ -9,7 +9,7 @@ class RDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: RColors.darkBackground,
+      backgroundColor: RColors.darkCard,
       shape: Border(
         right: BorderSide(
           color: RColors.darkTitle

@@ -9,20 +9,19 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: RText(
-        textData: "reminder",
-        fontWeight: FontWeight.w500,
-      ),
+      title: RText(textData: "reminder", fontWeight: FontWeight.w500),
       backgroundColor: RColors.darkCard,
       iconTheme: IconThemeData(color: RColors.darkTitle),
       actions: [
-        IconButton(onPressed: (){}, icon: RIcon(icon: Icons.info_outline_rounded, iconColor: RColors.darkTitle))
+        IconButton(
+          onPressed: () {},
+          icon: RIcon(
+            icon: Icons.info_outline_rounded,
+            iconColor: RColors.darkTitle,
+          ),
+        ),
       ],
-      shape: Border(
-        bottom: BorderSide(
-          color: RColors.darkTitle
-        )
-      ),
+      shape: Border(bottom: BorderSide(color: RColors.darkTitle)),
     );
   }
 
