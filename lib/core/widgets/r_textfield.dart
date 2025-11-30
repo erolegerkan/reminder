@@ -21,13 +21,23 @@ class RTextfield extends StatelessWidget {
         borderRadius: BorderRadius.circular(RNumbers.circularPadding)
       ),
       child: TextField(
+        style: TextStyle(
+          color: RColors.darkTitle,
+          fontSize: 20
+        ),
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(RNumbers.circularBorderV2)
+            borderRadius: BorderRadius.circular(RNumbers.circularBorderV2),
+            borderSide: BorderSide(color: RColors.darkTitle)
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(RNumbers.circularBorderV2),
+            borderSide: BorderSide(color: RColors.darkTitle)
           ),
           hint: RText(textData: textData, fontSize: 20,textAlign: TextAlign.start,),
           focusColor: RColors.darkTitle
         ),
+
       ),
     );
   }
