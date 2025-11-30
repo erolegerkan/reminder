@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/widgets/r_appbar.dart';
-import 'package:reminder/core/widgets/r_drawer.dart';
+import 'package:reminder/core/widgets/r_drawer/r_drawer.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,7 +14,9 @@ class HomeScreen extends StatelessWidget {
       drawer: RDrawer(),
       backgroundColor: RColors.darkBackground,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/new_reminder");
+        },
         backgroundColor: RColors.darkCard,
         child: Container(
           decoration: BoxDecoration(

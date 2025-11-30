@@ -8,17 +8,19 @@ class RText extends StatelessWidget {
     required this.textData,
     this.fontWeight = FontWeight.normal,
     required this.fontSize,
+    this.textAlign = TextAlign.center,
   });
 
   final String textData;
   final FontWeight fontWeight;
   final double fontSize;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       textData,
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
       style: GoogleFonts.literata(
         fontStyle: FontStyle.normal,
         fontWeight: fontWeight,
