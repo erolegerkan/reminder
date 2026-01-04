@@ -47,20 +47,26 @@ class _NewReminderScreenState extends State<NewReminderScreen> {
               isBorderNeeded: false,
               containerChild: Row(
                 children: [
-                  RText(textData: "Scheduled Notification", fontSize: 20),
+                  RText(textData: "Recursive Notification", fontSize: 20),
                   Spacer(),
                   Switch(
                     value: isSwitchTurnedOn,
-                    activeThumbColor: RColors.lightButton,
-                    onChanged: (bool value) {
-                      if (isSwitchTurnedOn != value) {
-                        setState(() {
-                          isSwitchTurnedOn = value;
-                        });
-                      }
+                    //activeThumbColor: RColors.lightButton,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitchTurnedOn = value;
+                      });
                     },
                   ),
                 ],
+              ),
+            ),
+            Spacer(),
+            RContainer(
+              width: double.infinity,
+              containerChild: TextButton(
+                onPressed: () {},
+                child: RText(textData: 'Save', fontSize: 20),
               ),
             ),
           ],
