@@ -10,6 +10,7 @@ class RContainer extends StatelessWidget {
     this.padding = RNumbers.defaultPadding,
     this.isBorderNeeded = true,
     this.width,
+    this.onPressed,
   });
 
   final Widget containerChild;
@@ -17,6 +18,7 @@ class RContainer extends StatelessWidget {
   final double padding;
   final bool isBorderNeeded;
   final double? width;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class RContainer extends StatelessWidget {
               border: Border.all(color: RColors.darkTitle),
               borderRadius: BorderRadius.circular(RNumbers.circularPadding),
             ),
-      child: containerChild,
+      child: InkWell(onTap: onPressed, child: containerChild),
     );
   }
 }

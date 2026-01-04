@@ -30,6 +30,12 @@ class _NewReminderScreenState extends State<NewReminderScreen> {
             RTextfield(textData: "Title"),
             RTextfield(textData: "Description"),
             RContainer(
+              onPressed: () async {
+                await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+              },
               padding: RNumbers.paddingOptionV2,
               margin: RNumbers.defaultMargin,
               containerChild: Row(
