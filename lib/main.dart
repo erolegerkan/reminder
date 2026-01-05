@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/features/home/presentation/home_screen.dart';
-import 'package:reminder/features/new_reminder/presentation/new_reminder_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -17,13 +16,31 @@ class MainApp extends StatelessWidget {
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: RColors.darkTitle,
           selectionColor: RColors.darkSecond,
-          selectionHandleColor: RColors.darkTitle,
+          selectionHandleColor: RColors.darkSecond,
+        ),
+        timePickerTheme: TimePickerThemeData(
+          backgroundColor: RColors.darkTitle,
+          dialHandColor: RColors.darkBackground,
+          hourMinuteColor: RColors.lightSecond,
+          hourMinuteTextColor: RColors.darkBackground,
+          dialBackgroundColor: RColors.darkBody,
+          dayPeriodColor: RColors.darkSecond, 
+          dayPeriodTextColor: RColors.darkBackground,
+          cancelButtonStyle: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all<Color>(
+              RColors.darkSecond
+            )
+          ),
+          confirmButtonStyle: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all<Color>(
+              RColors.darkBackground
+            )
+          )
         )
       ),
       debugShowCheckedModeBanner: false,
       routes: {
         "/home" : (context) => HomeScreen(),
-        "/new_reminder" : (context) => NewReminderScreen(),
       },
       initialRoute: "/home",
     );

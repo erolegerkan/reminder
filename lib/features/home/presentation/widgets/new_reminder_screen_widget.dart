@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
-import 'package:reminder/core/widgets/r_appbar.dart';
 import 'package:reminder/core/widgets/r_container.dart';
-import 'package:reminder/core/widgets/r_drawer/r_drawer.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 import 'package:reminder/core/widgets/r_textfield.dart';
 
-class NewReminderScreen extends StatefulWidget {
-  const NewReminderScreen({super.key});
+class NewReminderScreenWidget extends StatefulWidget {
+  const NewReminderScreenWidget({super.key});
 
   @override
-  State<NewReminderScreen> createState() => _NewReminderScreenState();
+  State<NewReminderScreenWidget> createState() => _NewReminderScreenWidgetState();
 }
 
-class _NewReminderScreenState extends State<NewReminderScreen> {
+class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
+  bool isSwitchTurnedOn = false;
+
   @override
   Widget build(BuildContext context) {
-    bool isSwitchTurnedOn = false;
-
-    return Scaffold(
-      appBar: RAppBar(),
-      drawer: RDrawer(),
-      backgroundColor: RColors.darkBackground,
-      body: SafeArea(
+    return SafeArea(
         child: Column(
           children: [
             RTextfield(textData: "Title"),
             RTextfield(textData: "Description"),
             RContainer(
               onPressed: () async {
-                await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.now(),
-                );
+                // notificationTime = await showTimePicker(
+                //   context: context,
+                //   initialTime: TimeOfDay.now(),
+                // );
               },
               padding: RNumbers.paddingOptionV2,
               margin: RNumbers.defaultMargin,
@@ -77,7 +71,7 @@ class _NewReminderScreenState extends State<NewReminderScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
+    
   }
 }
