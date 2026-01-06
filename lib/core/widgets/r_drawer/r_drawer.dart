@@ -12,26 +12,26 @@ class RDrawer extends StatelessWidget {
 
     return Drawer(
       backgroundColor: RColors.darkCard,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(24),
-          bottomRight: Radius.circular(24),
-        ),
-      ),
+      
       child: Column(
         children: [
           SizedBox(height: screenHeight / 12),
-          const RShaderMask(imagePath: "assets/icons/reminder_new_logo.png"),
-          SizedBox(height: screenHeight / 12),
-          RDrawerItem(itemTitle: "Settings", itemIcon: Icons.settings),
-          SizedBox(height: screenHeight / 50),
-          RDrawerItem(itemTitle: "Feedback", itemIcon: Icons.feedback),
-          SizedBox(height: screenHeight / 50),
-          RDrawerItem(itemTitle: "Policies", itemIcon: Icons.policy),
-          SizedBox(height: screenHeight / 50),
-          RDrawerItem(
-            itemTitle: "About us",
-            itemIcon: Icons.info_outline_rounded,
+          const RShaderMask(imagePath: "assets/icons/reminder_new_logo.png",imageHeight: 125,imageWidth: 125,),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: screenHeight / 12),
+              RDrawerItem(itemTitle: "Settings", itemIcon: Icons.settings),
+              SizedBox(height: screenHeight / 50),
+              RDrawerItem(itemTitle: "Feedback", itemIcon: Icons.feedback),
+              SizedBox(height: screenHeight / 50),
+              RDrawerItem(itemTitle: "Policies", itemIcon: Icons.policy),
+              SizedBox(height: screenHeight / 50),
+              RDrawerItem(
+                itemTitle: "About us",
+                itemIcon: Icons.info_outline_rounded,
+              ),
+            ],
           ),
         ],
       ),
