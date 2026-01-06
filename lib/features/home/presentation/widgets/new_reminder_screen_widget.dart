@@ -15,6 +15,8 @@ class NewReminderScreenWidget extends StatefulWidget {
 
 class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
   bool isSwitchTurnedOn = false;
+  TimeOfDay? notificationTime;
+  String textValue = "Time";
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,26 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
             RTextfield(textData: "Description"),
             RContainer(
               onPressed: () async {
-                // notificationTime = await showTimePicker(
-                //   context: context,
-                //   initialTime: TimeOfDay.now(),
-                // );
+                notificationTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+
+                if (notificationTime != null) {
+                  setState(() {
+                    textValue = "${notificationTime!.hour} : ${notificationTime!.minute}";
+                  });
+                } else {
+                  setState(() {
+                    textValue = "Time";
+                  });
+                }
               },
               padding: RNumbers.paddingOptionV2,
               margin: RNumbers.defaultMargin,
               containerChild: Row(
                 children: [
-                  RText(textData: "Time", fontSize: 20),
+                  RText(textData: textValue, fontSize: 20),
                   Spacer(),
                   RIcon(
                     icon: Icons.timer_outlined,
@@ -51,7 +63,6 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
                   Spacer(),
                   Switch(
                     value: isSwitchTurnedOn,
-                    //activeThumbColor: RColors.lightButton,
                     onChanged: (value) {
                       setState(() {
                         isSwitchTurnedOn = value;

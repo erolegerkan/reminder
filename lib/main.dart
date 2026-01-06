@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reminder/core/design/r_colors.dart';
-import 'package:reminder/features/home/presentation/home_screen.dart';
+import 'package:reminder/features/home/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const MainApp());
