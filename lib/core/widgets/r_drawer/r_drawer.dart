@@ -12,11 +12,15 @@ class RDrawer extends StatelessWidget {
 
     return Drawer(
       backgroundColor: RColors.darkCard,
-      
+
       child: Column(
         children: [
           SizedBox(height: screenHeight / 12),
-          const RShaderMask(imagePath: "assets/icons/reminder_new_logo.png",imageHeight: 125,imageWidth: 125,),
+          const RShaderMask(
+            imagePath: "assets/icons/reminder_new_logo.png",
+            imageHeight: 125,
+            imageWidth: 125,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
         if (didPop) {
           return;
         }
-        print("home screen : $isHomeScreen");
 
         setState(() {
           isHomeScreen = true;
