@@ -32,12 +32,16 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
                   initialTime: TimeOfDay.now(),
                 );
                 if (notificationTime != null) {
-                  String notificationTimeText = notificationTime!.minute.toString();
+                  String notificationMinuteText = notificationTime!.minute.toString();
+                  String notificationHourText = notificationTime!.hour.toString();
                   if (notificationTime!.minute < 10 ) {
-                    notificationTimeText = "0${notificationTime!.minute}";
+                    notificationMinuteText = "0${notificationTime!.minute}";
+                  }
+                  if (notificationTime!.hour < 10) {
+                    notificationHourText = "0${notificationTime!.hour}";
                   }
                   setState(() {
-                    textValue = "${notificationTime!.hour} : $notificationTimeText";
+                    textValue = "$notificationHourText : $notificationMinuteText";
                   });
                 } else {
                   setState(() {
