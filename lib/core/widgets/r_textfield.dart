@@ -4,9 +4,10 @@ import 'package:reminder/core/design/r_numbers.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 
 class RTextfield extends StatelessWidget {
-  const RTextfield({super.key, required this.textData});
+  const RTextfield({super.key, required this.textData, required this.controller});
 
   final String textData;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class RTextfield extends StatelessWidget {
         borderRadius: BorderRadius.circular(RNumbers.circularPadding)
       ),
       child: TextField(
+        controller: controller,
         style: TextStyle(
           color: RColors.darkTitle,
           fontSize: 20
