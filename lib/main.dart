@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
+import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
 import 'package:reminder/features/home/presentation/screens/home_screen.dart';
 
 void main() {
@@ -11,38 +13,43 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: RColors.darkTitle,
-          selectionColor: RColors.darkSecond,
-          selectionHandleColor: RColors.darkSecond,
-        ),
-        timePickerTheme: TimePickerThemeData(
-          backgroundColor: RColors.darkTitle,
-          dialHandColor: RColors.darkBackground,
-          hourMinuteColor: RColors.lightSecond,
-          hourMinuteTextColor: RColors.darkBackground,
-          dialBackgroundColor: RColors.darkBody,
-          dayPeriodColor: RColors.darkSecond, 
-          dayPeriodTextColor: RColors.darkBackground,
-          cancelButtonStyle: ButtonStyle(
-            foregroundColor: WidgetStateProperty.all<Color>(
-              RColors.darkSecond
-            )
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => IsHomeScreenProvider()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: RColors.darkTitle,
+            selectionColor: RColors.darkSecond,
+            selectionHandleColor: RColors.darkSecond,
           ),
-          confirmButtonStyle: ButtonStyle(
-            foregroundColor: WidgetStateProperty.all<Color>(
-              RColors.darkBackground
+          timePickerTheme: TimePickerThemeData(
+            backgroundColor: RColors.darkTitle,
+            dialHandColor: RColors.darkBackground,
+            hourMinuteColor: RColors.lightSecond,
+            hourMinuteTextColor: RColors.darkBackground,
+            dialBackgroundColor: RColors.darkBody,
+            dayPeriodColor: RColors.darkSecond, 
+            dayPeriodTextColor: RColors.darkBackground,
+            cancelButtonStyle: ButtonStyle(
+              foregroundColor: WidgetStateProperty.all<Color>(
+                RColors.darkSecond
+              )
+            ),
+            confirmButtonStyle: ButtonStyle(
+              foregroundColor: WidgetStateProperty.all<Color>(
+                RColors.darkBackground
+              )
             )
           )
-        )
+        ),
+        debugShowCheckedModeBanner: false,
+        routes: {
+          "/home" : (context) => HomeScreen(),
+        },
+        initialRoute: "/home",
       ),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        "/home" : (context) => HomeScreen(),
-      },
-      initialRoute: "/home",
     );
   }
 }
