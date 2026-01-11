@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/widgets/r_drawer/r_drawer_item.dart';
 import 'package:reminder/core/widgets/r_shadermask.dart';
+import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
 
 class RDrawer extends StatelessWidget {
   const RDrawer({super.key});
@@ -12,14 +16,24 @@ class RDrawer extends StatelessWidget {
 
     return Drawer(
       backgroundColor: RColors.darkCard,
-
       child: Column(
         children: [
           SizedBox(height: screenHeight / 12),
-          const RShaderMask(
-            imagePath: "assets/icons/reminder_new_logo.png",
-            imageHeight: 125,
-            imageWidth: 125,
+          Consumer<IsHomeScreenProvider>(
+            builder: (context, isHomeScreenProviderModel, child) => RShaderMask(
+              onTap: () {
+                if (isHomeScreenProviderModel.isHomeScreen) {
+                  return;
+                } else {
+                  Navigator.pop(context);
+                  isHomeScreenProviderModel.changeScreenStatus(true);
+                  Navigator.pushReplacementNamed(context, "/home");
+                }
+              },
+              imagePath: "assets/icons/reminder_new_logo.png",
+              imageHeight: 125,
+              imageWidth: 125,
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

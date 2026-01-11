@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reminder/core/design/r_colors.dart';
+import 'package:reminder/core/design/r_numbers.dart';
 
 class RShaderMask extends StatelessWidget {
   const RShaderMask({
@@ -9,6 +10,7 @@ class RShaderMask extends StatelessWidget {
     this.leftColor = RColors.darkTitle,
     this.imageHeight = 100,
     this.imageWidth = 100,
+    this.onTap,
   });
 
   final String imagePath;
@@ -16,22 +18,18 @@ class RShaderMask extends StatelessWidget {
   final Color leftColor;
   final double imageHeight;
   final double imageWidth;
+  final Function? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (Rect bounds) {
-        return LinearGradient(
-          colors: [rightColor, leftColor],
-          begin: AlignmentGeometry.topLeft,
-          end: AlignmentGeometry.bottomRight,
-        ).createShader(bounds);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: RColors.darkTitle),
-          borderRadius: BorderRadius.circular(16),
-        ),
+    return Container(
+      padding: EdgeInsets.all(RNumbers.defaultPadding),
+      decoration: BoxDecoration(
+        border: Border.all(color: RColors.darkTitle),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: InkWell(
+        onTap: () => onTap!.call(),
         child: Image.asset(
           imagePath,
           height: imageHeight,
