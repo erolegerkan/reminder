@@ -15,9 +15,24 @@ class RDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? currentRouteName = ModalRoute.of(context)?.settings.name;
+
     return TextButton.icon(
-      onPressed: () {},
-      label: RText(textData: itemTitle, fontSize: 25,fontWeight: FontWeight.bold,),
+      onPressed: () {
+        String routeName = "/${itemTitle.toLowerCase().replaceAll(" ", "_")}";
+
+        if (routeName == currentRouteName) {
+          Navigator.pop(context);
+        } else {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, routeName);
+        }
+      },
+      label: RText(
+        textData: itemTitle,
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
       icon: RIcon(icon: itemIcon, iconColor: RColors.darkTitle),
     );
   }

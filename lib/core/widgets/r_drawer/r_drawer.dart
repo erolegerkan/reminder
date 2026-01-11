@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
@@ -19,22 +17,12 @@ class RDrawer extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: screenHeight / 12),
-          Consumer<IsHomeScreenProvider>(
-            builder: (context, isHomeScreenProviderModel, child) => RShaderMask(
-              onTap: () {
-                if (isHomeScreenProviderModel.isHomeScreen) {
-                  return;
-                } else {
-                  Navigator.pop(context);
-                  isHomeScreenProviderModel.changeScreenStatus(true);
-                  Navigator.pushReplacementNamed(context, "/home");
-                }
-              },
+          RShaderMask(
               imagePath: "assets/icons/reminder_new_logo.png",
               imageHeight: 125,
               imageWidth: 125,
             ),
-          ),
+          
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,4 +43,6 @@ class RDrawer extends StatelessWidget {
       ),
     );
   }
+
+  void checkNavigation() {}
 }
