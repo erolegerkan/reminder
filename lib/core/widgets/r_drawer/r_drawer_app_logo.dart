@@ -4,8 +4,8 @@ import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
 import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
 
-class RShaderMask extends StatelessWidget {
-  const RShaderMask({
+class RAppLogo extends StatelessWidget {
+  const RAppLogo({
     super.key,
     required this.imagePath,
     this.rightColor = RColors.darkTitle,

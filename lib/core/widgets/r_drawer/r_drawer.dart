@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/widgets/r_drawer/r_drawer_item.dart';
-import 'package:reminder/core/widgets/r_shadermask.dart';
-import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
+import 'package:reminder/core/widgets/r_drawer/r_drawer_app_logo.dart';
 
 class RDrawer extends StatelessWidget {
   const RDrawer({super.key});
@@ -17,7 +15,7 @@ class RDrawer extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: screenHeight / 12),
-          RShaderMask(
+          RAppLogo(
               imagePath: "assets/icons/reminder_new_logo.png",
               imageHeight: 125,
               imageWidth: 125,
@@ -43,6 +41,4 @@ class RDrawer extends StatelessWidget {
       ),
     );
   }
-
-  void checkNavigation() {}
 }

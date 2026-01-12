@@ -6,7 +6,7 @@ import 'package:reminder/core/widgets/r_drawer/r_drawer.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
 import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
-import 'package:reminder/features/home/presentation/widgets/new_reminder_screen_widget.dart';
+import 'package:reminder/features/new_reminder/presentation/widgets/new_reminder_screen_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
