@@ -25,7 +25,6 @@ class RDrawerItem extends StatelessWidget {
           Navigator.pop(context);
         } else {
           Navigator.pop(context);
-          Navigator.pushNamed(context, routeName);
         }
       },
       label: RText(

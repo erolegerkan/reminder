@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
 import 'package:reminder/core/widgets/r_container.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 import 'package:reminder/core/widgets/r_textfield.dart';
+import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
+import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
 
 class NewReminderScreenWidget extends StatefulWidget {
   const NewReminderScreenWidget({super.key});
@@ -27,10 +30,7 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
     return SafeArea(
       child: Column(
         children: [
-          RTextfield(
-            textData: "Title", 
-            controller: titleController,
-          ),
+          RTextfield(textData: "Title", controller: titleController),
           RTextfield(
             textData: "Description",
             controller: descriptionController,
@@ -88,19 +88,25 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
             ),
           ),
           Spacer(),
-          RContainer(
-            width: double.infinity,
-            containerChild: TextButton(
-              onPressed: () {
-                if (titleController.text.isNotEmpty && descriptionController.text.isNotEmpty ) {
-                  // gerekli metinler girilmedi hatası fırlatma
-                }
-                if (textValue == "Time") {
-                  // zaman boş bırakıldı hatası
-                }
-              },
-              child: RText(textData: 'Save', fontSize: 20),
-            ),
+          Consumer<ScreenProvider>(
+            builder:
+                (context, screenProviderModel,child) =>
+                    RContainer(
+                      width: double.infinity,
+                      containerChild: TextButton(
+                        onPressed: () {
+                          if (titleController.text.isNotEmpty &&
+                              descriptionController.text.isNotEmpty) {
+                            // gerekli metinler girilmedi hatası fırlatma
+                          }
+                          if (textValue == "Time") {
+                            // zaman boş bırakıldı hatası
+                          }
+                          screenProviderModel.changeScreenStatus(HomeScreenWidget());
+                        },
+                        child: RText(textData: 'Save', fontSize: 20),
+                      ),
+                    ),
           ),
         ],
       ),

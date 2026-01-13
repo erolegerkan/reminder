@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
-import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
+import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
+import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
 
 class RAppLogo extends StatelessWidget {
   const RAppLogo({
@@ -30,15 +31,15 @@ class RAppLogo extends StatelessWidget {
         border: Border.all(color: RColors.darkTitle),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Consumer<IsHomeScreenProvider>(
-        builder: (context, isHomeScreenProviderModel, child) => InkWell(
+      child: Consumer<ScreenProvider>(
+        builder: (context, screenProvider, child) => InkWell(
           onTap: () {
             if (currentRouteName == "/home" &&
-                isHomeScreenProviderModel.isHomeScreen) {
+                screenProvider.currentScreen == HomeScreenWidget()) {
               Navigator.pop(context);
             } else {
               Navigator.pop(context);
-              isHomeScreenProviderModel.changeScreenStatus(true);
+              screenProvider.changeScreenStatus(HomeScreenWidget());
               Navigator.pushNamed(context, "/home");
             }
           },

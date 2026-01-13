@@ -4,9 +4,13 @@ import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/widgets/r_appbar.dart';
 import 'package:reminder/core/widgets/r_drawer/r_drawer.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
-import 'package:reminder/features/home/presentation/providers/is_home_screen_provider.dart';
+import 'package:reminder/features/about_us/presentation/widgets/about_us_screen_widget.dart';
+import 'package:reminder/features/feedback/presentation/widgets/feedback_screen_widget.dart';
+import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
 import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
 import 'package:reminder/features/new_reminder/presentation/widgets/new_reminder_screen_widget.dart';
+import 'package:reminder/features/policies/presentation/widgets/policies_screen_widget.dart';
+import 'package:reminder/features/settings/presentation/widgets/settings_screen_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,29 +20,31 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  String screenName = "home";
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<IsHomeScreenProvider>(
-      builder: (context, isHomeScreenProviderModel, child) => PopScope(
-        canPop: isHomeScreenProviderModel.isHomeScreen,
+    return Consumer<ScreenProvider>(
+      builder: (context, screenProviderModel, child) => PopScope(
+        canPop:  screenProviderModel.currentScreen == HomeScreenWidget() ? false : true,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) {
             return;
           }
-
           setState(() {
-            isHomeScreenProviderModel.changeScreenStatus(true);
+            screenProviderModel.changeScreenStatus(HomeScreenWidget());
           });
         },
         child: Scaffold(
           appBar: RAppBar(),
           drawer: RDrawer(),
           backgroundColor: RColors.darkBackground,
-          floatingActionButton: isHomeScreenProviderModel.isHomeScreen
+          floatingActionButton: screenProviderModel.currentScreen == HomeScreenWidget()
               ? FloatingActionButton(
                   onPressed: () {
                     setState(() {
-                      isHomeScreenProviderModel.changeScreenStatus(false);
+                      screenProviderModel.changeScreenStatus(NewReminderScreenWidget());
                     });
                   },
                   backgroundColor: RColors.darkCard,
@@ -56,9 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 )
               : null,
-          body: isHomeScreenProviderModel.isHomeScreen
-              ? HomeScreenWidget()
-              : NewReminderScreenWidget(),
+          body: screenProviderModel.currentScreen,
         ),
       ),
     );
