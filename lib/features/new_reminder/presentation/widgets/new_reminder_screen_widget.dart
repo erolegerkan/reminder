@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:reminder/core/constants/enums/screen_enum.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
+import 'package:reminder/core/providers/screen_provider.dart';
 import 'package:reminder/core/widgets/r_container.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 import 'package:reminder/core/widgets/r_textfield.dart';
-import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
-import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
 
 class NewReminderScreenWidget extends StatefulWidget {
   const NewReminderScreenWidget({super.key});
@@ -102,7 +102,7 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
                           if (textValue == "Time") {
                             // zaman boş bırakıldı hatası
                           }
-                          screenProviderModel.changeScreenStatus(HomeScreenWidget());
+                          screenProviderModel.changeScreenStatus(ReminderScreens.home);
                         },
                         child: RText(textData: 'Save', fontSize: 20),
                       ),

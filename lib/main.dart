@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reminder/core/design/r_colors.dart';
-import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
+import 'package:reminder/core/providers/screen_provider.dart';
 import 'package:reminder/features/home/presentation/screens/home_screen.dart';
 
 void main() {

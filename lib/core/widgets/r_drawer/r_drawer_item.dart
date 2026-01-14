@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:reminder/core/constants/enums/screen_enum.dart';
+import 'package:reminder/core/constants/extensions/string_extensions.dart';
 import 'package:reminder/core/design/r_colors.dart';
+import 'package:reminder/core/providers/screen_provider.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 
@@ -15,24 +19,25 @@ class RDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? currentRouteName = ModalRoute.of(context)?.settings.name;
+    return Consumer<ScreenProvider>(
+      builder: (context, screenProviderModel, child) => TextButton.icon(
+        onPressed: () {
+          String screenName = itemTitle.toLowerCamelCase();
 
-    return TextButton.icon(
-      onPressed: () {
-        String routeName = "/${itemTitle.toLowerCase().replaceAll(" ", "_")}";
-
-        if (routeName == currentRouteName) {
-          Navigator.pop(context);
-        } else {
-          Navigator.pop(context);
-        }
-      },
-      label: RText(
-        textData: itemTitle,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
+          if (screenName == screenProviderModel.currentScreen.name) {
+            Navigator.pop(context);
+          } else {
+            Navigator.pop(context);
+            screenProviderModel.changeScreenStatus(ReminderScreens.fromString(screenName));
+          }
+        },
+        label: RText(
+          textData: itemTitle,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+        icon: RIcon(icon: itemIcon, iconColor: RColors.darkTitle),
       ),
-      icon: RIcon(icon: itemIcon, iconColor: RColors.darkTitle),
     );
   }
 }

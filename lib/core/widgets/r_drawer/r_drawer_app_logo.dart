@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:reminder/core/constants/enums/screen_enum.dart';
 import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
-import 'package:reminder/features/home/presentation/providers/screen_provider.dart';
-import 'package:reminder/features/home/presentation/widgets/home_screen_widget.dart';
+import 'package:reminder/core/providers/screen_provider.dart';
 
 class RAppLogo extends StatelessWidget {
   const RAppLogo({
@@ -23,7 +23,6 @@ class RAppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? currentRouteName = ModalRoute.of(context)?.settings.name;
 
     return Container(
       padding: EdgeInsets.all(RNumbers.defaultPadding),
@@ -34,13 +33,11 @@ class RAppLogo extends StatelessWidget {
       child: Consumer<ScreenProvider>(
         builder: (context, screenProvider, child) => InkWell(
           onTap: () {
-            if (currentRouteName == "/home" &&
-                screenProvider.currentScreen == HomeScreenWidget()) {
+            if (screenProvider.currentScreen == ReminderScreens.home) {
               Navigator.pop(context);
             } else {
               Navigator.pop(context);
-              screenProvider.changeScreenStatus(HomeScreenWidget());
-              Navigator.pushNamed(context, "/home");
+              screenProvider.changeScreenStatus(ReminderScreens.home);
             }
           },
           child: Image.asset(
