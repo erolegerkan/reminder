@@ -20,7 +20,9 @@ class NewReminderScreenWidget extends StatefulWidget {
 class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
   bool isSwitchTurnedOn = false;
   TimeOfDay? notificationTime;
-  String textValue = "Time";
+  DateTime? notificationDate;
+  String timeTextValue = "Time";
+  String dateTextValue = "Date";
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -52,11 +54,12 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
                   notificationHourText = "0${notificationTime!.hour}";
                 }
                 setState(() {
-                  textValue = "$notificationHourText : $notificationMinuteText";
+                  timeTextValue =
+                      "$notificationHourText : $notificationMinuteText";
                 });
               } else {
                 setState(() {
-                  textValue = "Time";
+                  timeTextValue = "Time";
                 });
               }
             },
@@ -64,7 +67,7 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
             margin: RNumbers.defaultMargin,
             containerChild: Row(
               children: [
-                RText(textData: textValue, fontSize: 20),
+                RText(textData: timeTextValue, fontSize: 20),
                 Spacer(),
                 RIcon(icon: Icons.timer_outlined, iconColor: RColors.darkTitle),
               ],
@@ -87,26 +90,50 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
               ],
             ),
           ),
+          if (isSwitchTurnedOn)
+            RContainer(
+              onPressed: () async {
+                notificationDate = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.utc(2099, DateTime.december, 31),
+                );
+              },
+              padding: RNumbers.paddingOptionV2,
+              margin: RNumbers.defaultMargin,
+              containerChild: Row(
+                children: [
+                  RText(textData: dateTextValue, fontSize: 20),
+                  Spacer(),
+                  RIcon(
+                    icon: Icons.date_range_outlined,
+                    iconColor: RColors.darkTitle,
+                  ),
+                ],
+              ),
+            ),
+
           Spacer(),
           Consumer<ScreenProvider>(
-            builder:
-                (context, screenProviderModel,child) =>
-                    RContainer(
-                      width: double.infinity,
-                      containerChild: TextButton(
-                        onPressed: () {
-                          if (titleController.text.isNotEmpty &&
-                              descriptionController.text.isNotEmpty) {
-                            // gerekli metinler girilmedi hatası fırlatma
-                          }
-                          if (textValue == "Time") {
-                            // zaman boş bırakıldı hatası
-                          }
-                          screenProviderModel.changeScreenStatus(ReminderScreens.home);
-                        },
-                        child: RText(textData: 'Save', fontSize: 20),
-                      ),
-                    ),
+            builder: (context, screenProviderModel, child) => RContainer(
+              width: double.infinity,
+              containerChild: TextButton(
+                onPressed: () {
+                  if (titleController.text.isNotEmpty &&
+                      descriptionController.text.isNotEmpty) {
+                    // textfields cannot be empty
+                  }
+                  if (timeTextValue == "Time") {
+                    // time cannot be empty
+                  }
+                  if (isSwitchTurnedOn && dateTextValue == "Date") {
+                    // date cannot be empty
+                  }
+                  screenProviderModel.changeScreenStatus(ReminderScreens.home);
+                },
+                child: RText(textData: 'Save', fontSize: 20),
+              ),
+            ),
           ),
         ],
       ),
