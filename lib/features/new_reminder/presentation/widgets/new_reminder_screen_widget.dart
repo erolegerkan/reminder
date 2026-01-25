@@ -5,6 +5,7 @@ import 'package:reminder/core/design/r_colors.dart';
 import 'package:reminder/core/design/r_numbers.dart';
 import 'package:reminder/core/providers/screen_provider.dart';
 import 'package:reminder/core/widgets/r_container.dart';
+import 'package:reminder/core/widgets/r_dialog.dart';
 import 'package:reminder/core/widgets/r_icon.dart';
 import 'package:reminder/core/widgets/r_text.dart';
 import 'package:reminder/core/widgets/r_textfield.dart';
@@ -127,7 +128,18 @@ class _NewReminderScreenWidgetState extends State<NewReminderScreenWidget> {
                     // time cannot be empty
                   }
                   if (isSwitchTurnedOn && dateTextValue == "Date") {
-                    // date cannot be empty
+                    showDialog(
+                      context: context,
+                      builder: (builder) {
+                        return RDialog(
+                          alertDialogText: "Date fields cannot be empty",
+                          alertDialogTitle: "Warning",
+                          alertDialogIcon: Icons.warning_amber_outlined,
+                          alertDialogButtonTexts: ["OK","Cancel"],
+                          alertDialogButtonIcons: [Icons.check, Icons.close],
+                        );
+                      },
+                    );
                   }
                   screenProviderModel.changeScreenStatus(ReminderScreens.home);
                 },
